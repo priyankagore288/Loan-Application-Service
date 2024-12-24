@@ -1,5 +1,6 @@
 package com.cjc.app.Entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,5 +27,8 @@ public class LoanDisbursement {
 	private String paymentStatus;
 	private String amountPaidDate;
 	
+public class LoanDisbursement 
+{
+
 
 }
