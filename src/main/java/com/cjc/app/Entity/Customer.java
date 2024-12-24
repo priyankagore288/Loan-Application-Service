@@ -29,7 +29,7 @@ public class Customer {
 	@Enumerated(EnumType.STRING)
 	private LoanStatus loanStatus;
 	@OneToOne
-	private AllpersonalDoucumene allpersonaldoucument;
+	private AllpersonalDoucumenet allpersonaldoucument;
 	@OneToOne
 	private FamilydependetInfo  familydependetinfo;
 	@OneToOne
