@@ -45,8 +45,8 @@ public class Customer {
 	private GurantorDetails gurantordetails;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private LoanDisbursement loandisbursement;
-	//@OneToMany(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	//private Ledger ledger;
+	@OneToMany(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
+	private List<Ledger> ledger;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
     private SanctionLetter sanctionletter;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
