@@ -1,5 +1,6 @@
 package com.cjc.app.rest;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cjc.app.Entity.AllpersonalDoucumenet;
 import com.cjc.app.Entity.Customer;
 import com.cjc.app.dto.CustomerRequestDTO;
 import com.cjc.app.dto.CustomerResponseDTO;
@@ -63,6 +67,32 @@ public class LoanController {
 		}
 		return new ResponseEntity<Void>( HttpStatus.NOT_FOUND);
 
+	}
+	
+	@PostMapping(value = "/document-upload")
+	public ResponseEntity<String> documentUpload(@RequestPart MultipartFile addressProof,
+			@RequestPart MultipartFile panCard,@RequestPart MultipartFile IncomeTax,
+			@RequestPart MultipartFile addharCard,@RequestPart MultipartFile photo, 
+			@RequestPart MultipartFile signature, @RequestPart MultipartFile bankCheque, 
+			@RequestPart MultipartFile salarySlips) throws IOException{
+		
+		AllpersonalDoucumenet documents=new AllpersonalDoucumenet();
+		
+		documents.setAddharCard(addharCard.getBytes());
+		documents.setAddressProof(addressProof.getBytes());
+		documents.setBankCheque(bankCheque.getBytes());
+		documents.setIncomeTax(IncomeTax.getBytes());
+		documents.setPanCard(panCard.getBytes());
+		documents.setPhoto(photo.getBytes());
+		documents.setSalarySlips(salarySlips.getBytes());
+		documents.setSignature(signature.getBytes());
+		
+		loanservice.documentUpload(documents);
+		
+		String msg="Documents Upload Successfull...!";
+		
+		return new ResponseEntity<String>(msg,HttpStatus.OK);
+		
 	}
 	
 	
