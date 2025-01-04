@@ -1,25 +1,25 @@
 package com.cjc.app.Entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import lombok.Data;
 
 @Data
 @Entity
-public class CustomerVerification {
+public class LocalAddress {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer verificationID;
-	@CreationTimestamp
-	private Date verificationDate;
-	private String status;
-	private String remarks;
+	private Integer localAddressId;
+	private String areaname;
+	private String cityname;
+	private String district;
+	private String state;
+	private Long pincode;
+	private Integer houseNumber;
+	private String streetName;
+
 }
