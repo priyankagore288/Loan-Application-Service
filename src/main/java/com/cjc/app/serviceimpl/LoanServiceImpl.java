@@ -62,13 +62,7 @@ public class LoanServiceImpl implements LoanService {
 		return null;
 	}
 
-	@Override
-	public boolean deleteCustomer(int customerId) {
-		if (loanrepository.existsById(customerId)) {
 
-			return optional.get();		}
-		return null;
-		}
 	@Override
 	public boolean deleteCustomer(int customerId) {
 		if(loanrepository.existsById(customerId))

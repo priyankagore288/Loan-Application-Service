@@ -67,27 +67,6 @@ public class LoanController {
 
 	}
 
-
-	@GetMapping(value = "/expose-customer/{customerId}")
-	public ResponseEntity<Customer> getCustomer(@PathVariable("customerId") int customerId) {
-		Customer getcustomer = loanservice.getCustomer(customerId);
-		if (getcustomer != null) {
-			return new ResponseEntity<Customer>(getcustomer, HttpStatus.OK);
-		}
-		return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
-
-	}
-
-	@DeleteMapping(value = "/delete-customer/{customerId}")
-	public ResponseEntity<Void> deleteCustomer(@PathVariable int customerId) {
-		boolean flag = loanservice.deleteCustomer(customerId);
-		if (flag) {
-			return new ResponseEntity<Void>(HttpStatus.OK);
-		}
-		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-
-	}
-
 	@PutMapping(value = "/update-sanction/{customerId}")
 	public ResponseEntity<Customer> updateSanctionOnId(@PathVariable Integer customerId,
 			@RequestBody Customer customer) {
