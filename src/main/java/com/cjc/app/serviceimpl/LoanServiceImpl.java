@@ -3,24 +3,14 @@ package com.cjc.app.serviceimpl;
 import java.util.List;
 import java.util.Optional;
 
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cjc.app.Entity.Customer;
-import com.cjc.app.Entity.SanctionDetails;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.cjc.app.Entity.AllpersonalDoucumenet;
-import com.cjc.app.Entity.Customer;
+import com.cjc.app.Entity.AllpersonalDoucument;
 import com.cjc.app.dao.AllpersonalDoucumenetRepository;
 
 import com.cjc.app.dao.LoanRepository;
-import com.cjc.app.dto.CustomerRequestDTO;
-import com.cjc.app.dto.CustomerResponseDTO;
 import com.cjc.app.service.LoanService;
 
 @Service
@@ -29,14 +19,8 @@ public class LoanServiceImpl implements LoanService {
 	@Autowired
 	LoanRepository loanrepository;
 
-
-	@Autowired
-	ModelMapper modelMapper;
-
-	
 	@Autowired
 	AllpersonalDoucumenetRepository documentRepository;
-
 
 	@Override
 	public Customer saveCustomer(Customer customer) {
@@ -49,7 +33,6 @@ public class LoanServiceImpl implements LoanService {
 
 		return loanrepository.findAll();
 	}
-
 
 	@Override
 	public Customer getCustomer(int customerId) {
@@ -66,14 +49,6 @@ public class LoanServiceImpl implements LoanService {
 	public boolean deleteCustomer(int customerId) {
 		if (loanrepository.existsById(customerId)) {
 
-			return optional.get();		}
-		return null;
-		}
-	@Override
-	public boolean deleteCustomer(int customerId) {
-		if(loanrepository.existsById(customerId))
-		{
-
 			loanrepository.deleteById(customerId);
 			return true;
 		}
@@ -81,8 +56,7 @@ public class LoanServiceImpl implements LoanService {
 	}
 
 	@Override
-
-	public Customer getCustomerId(Integer customerId) {
+    public Customer getCustomerId(Integer customerId) {
 
 		return loanrepository.findById(customerId).get();
 	}
@@ -91,17 +65,16 @@ public class LoanServiceImpl implements LoanService {
 	public Customer updateSanctionOnId(Integer customerId, Customer customer) {
 
 		if (loanrepository.existsById(customerId)) {
-		customer.setCustomerId(customerId);
-		return loanrepository.save(customer);
+			customer.setCustomerId(customerId);
+			return loanrepository.save(customer);
 		}
 
 		return null;
 
 	}
 
-
-	public void documentUpload(AllpersonalDoucumenet documents) {
-		documentRepository.save(documents);
-		}
+//	public void documentUpload(AllpersonalDoucumenet documents) {
+//		documentRepository.save(documents);
+//	}
 
 }
