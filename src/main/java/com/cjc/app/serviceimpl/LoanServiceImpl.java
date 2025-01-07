@@ -3,13 +3,18 @@ package com.cjc.app.serviceimpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cjc.app.Entity.AllpersonalDocument;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cjc.app.Entity.Customer;
 import com.cjc.app.Entity.AllpersonalDoucument;
 import com.cjc.app.dao.AllpersonalDoucumenetRepository;
-
 import com.cjc.app.dao.LoanRepository;
 import com.cjc.app.service.LoanService;
 
@@ -18,6 +23,9 @@ public class LoanServiceImpl implements LoanService {
 
 	@Autowired
 	LoanRepository loanrepository;
+
+	@Autowired
+	ModelMapper modelMapper;
 
 	@Autowired
 	AllpersonalDoucumenetRepository documentRepository;
@@ -47,6 +55,8 @@ public class LoanServiceImpl implements LoanService {
 
 	@Override
 	public boolean deleteCustomer(int customerId) {
+		if (loanrepository.existsById(customerId)) {
+
 		if(loanrepository.existsById(customerId))
 		{
 			loanrepository.deleteById(customerId);
@@ -73,6 +83,9 @@ public class LoanServiceImpl implements LoanService {
 
 	}
 
+	public void documentUpload(AllpersonalDocument documents) {
+		documentRepository.save(documents);
+	}
 //	public void documentUpload(AllpersonalDoucumenet documents) {
 //		documentRepository.save(documents);
 //	}

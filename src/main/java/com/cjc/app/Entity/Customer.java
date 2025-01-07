@@ -7,13 +7,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.cjc.app.dto.AccountDetailsDTO;
 import com.cjc.app.module.LoanStatus;
 
 import lombok.Data;
+
 @Entity
 @Data
 public class Customer {
@@ -33,13 +33,13 @@ public class Customer {
 	@Enumerated(EnumType.STRING)
 	private LoanStatus loanStatus;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private AllpersonalDoucument allpersonaldoucument;
+	private AllpersonalDocument allpersonaldocument;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private FamilydependetInfo  familydependetinfo;
+	private FamilydependetInfo familydependetinfo;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-    private CustomerAddress  customeraddress;
-	//@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	//private CibilScore cibilscore;
+	private CustomerAddress customeraddress;
+	// @OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
+	// private CibilScore cibilscore;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private AccountDetails accountdetails;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
@@ -49,8 +49,7 @@ public class Customer {
 	//@OneToMany(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	//private Ledger ledger;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-    private SanctionDetails sanctiondetails;
+	private SanctionDetails sanctiondetails;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private CustomerVerification customerverification;
-	
 }
