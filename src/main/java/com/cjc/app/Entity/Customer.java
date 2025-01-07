@@ -33,7 +33,7 @@ public class Customer {
 	@Enumerated(EnumType.STRING)
 	private LoanStatus loanStatus;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private AllpersonalDoucumenet allpersonaldoucument;
+	private AllpersonalDoucument allpersonaldoucument;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private FamilydependetInfo  familydependetinfo;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
@@ -53,13 +53,4 @@ public class Customer {
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private CustomerVerification customerverification;
 	
-	
-  
-
-
-
-
-
-
-
 }

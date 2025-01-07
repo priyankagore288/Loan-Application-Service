@@ -1,7 +1,5 @@
 package com.cjc.app.dto;
 
-
-
 import lombok.Data;
 
 @Data
