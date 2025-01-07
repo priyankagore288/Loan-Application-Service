@@ -24,10 +24,7 @@ public interface LoanService {
 
 	Customer getCustomerId(Integer customerId);
 
-	Customer updateSanctionOnId(Integer customerId, Customer customer);
-	
-	
-	
+	Customer updateSanctionOnId(Integer customerId, Customer customer);		
 
 	void documentUpload(AllpersonalDoucumenet documents);
 
