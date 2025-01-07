@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,12 +18,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cjc.app.Entity.AllpersonalDocument;
 import com.cjc.app.Entity.Customer;
 import com.cjc.app.Entity.CustomerAddress;
-import com.cjc.app.Entity.LocalAddress;
-import com.cjc.app.Entity.PermanentAddress;
-import com.cjc.app.Entity.SanctionDetails;
 import com.cjc.app.dto.AllpersonalDoucumentDTO;
 import com.cjc.app.dto.CustomerAddressDTO;
 import com.cjc.app.dto.CustomerRequestDTO;
@@ -47,11 +42,10 @@ public class LoanController {
 	@Autowired
 	private CustomerResource customerResource;
 	@Autowired
-	private CustomerAddressService  customerAddressService;
+	private CustomerAddressService customerAddressService;
 
 	@PostMapping(value = "/save-customer")
-	public ResponseEntity<CustomerResponseDTO> saveCustomer(@RequestBody CustomerRequestDTO customerRequestDTO)
-    {
+	public ResponseEntity<CustomerResponseDTO> saveCustomer(@RequestBody CustomerRequestDTO customerRequestDTO) {
 		CustomerResponseDTO saveCustomerResponseDTO = customerResource.saveCustomer(customerRequestDTO);
 		return new ResponseEntity<CustomerResponseDTO>(saveCustomerResponseDTO, HttpStatus.CREATED);
 	}
@@ -91,21 +85,20 @@ public class LoanController {
 			@RequestBody Customer customer) {
 
 		Customer updatedCustomer = loanservice.updateSanctionOnId(customerId, customer);
-		
-		
-		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.OK);
+
+		return new ResponseEntity<Customer>(updatedCustomer, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = "/document-upload")
 	public ResponseEntity<Customer> documentUpload(@RequestParam Integer customerId,
-			@RequestPart MultipartFile addressProof,
-			@RequestPart MultipartFile panCard,@RequestPart MultipartFile IncomeTax,
-			@RequestPart MultipartFile addharCard,@RequestPart MultipartFile photo, 
-			@RequestPart MultipartFile signature, @RequestPart MultipartFile bankCheque, 
-			@RequestPart MultipartFile salarySlips) throws IOException{
-		
-		AllpersonalDoucumentDTO documents=new AllpersonalDoucumentDTO();
+			@RequestPart MultipartFile addressProof, @RequestPart MultipartFile panCard,
+			@RequestPart MultipartFile IncomeTax, @RequestPart MultipartFile addharCard,
+			@RequestPart MultipartFile photo, @RequestPart MultipartFile signature,
+			@RequestPart MultipartFile bankCheque, @RequestPart MultipartFile salarySlips) throws IOException {
+
+		AllpersonalDoucumentDTO documents = new AllpersonalDoucumentDTO();
 		documents.setCustomerId(customerId);
+
 		documents.setAddharCard(addharCard.getBytes());
 		documents.setAddressProof(addressProof.getBytes());
 		documents.setBankCheque(bankCheque.getBytes());
@@ -114,39 +107,33 @@ public class LoanController {
 		documents.setPhoto(photo.getBytes());
 		documents.setSalarySlips(salarySlips.getBytes());
 		documents.setSignature(signature.getBytes());
-		
 		Customer CustomerResource = customerResource.documentUpload(documents);
-		
-		
-		
 		return new ResponseEntity<Customer>(CustomerResource, HttpStatus.OK);
-		
 	}
+
 	@PostMapping(value = "/add-customerAddress")
-	public ResponseEntity<CustomerAddress>addCustomerAddress(@RequestBody CustomerAddress customerAddress)
-	{
-	 CustomerAddress addcustomerAddress = customerAddressService.addCustomerAddress(customerAddress);
-	 return new ResponseEntity<CustomerAddress>(addcustomerAddress,HttpStatus.OK);
-		
+	public ResponseEntity<CustomerAddress> addCustomerAddress(@RequestBody CustomerAddress customerAddress) {
+		CustomerAddress addcustomerAddress = customerAddressService.addCustomerAddress(customerAddress);
+		return new ResponseEntity<CustomerAddress>(addcustomerAddress, HttpStatus.OK);
+
 	}
+
 	@PostMapping(value = "/save-permanentaddress")
-	public ResponseEntity<CustomerAddress> saveAddress(@RequestBody PermanentAddressDTO permanentAddressDTO)
-	{
-	CustomerAddress customerAddress = customerResource .saveAddress(permanentAddressDTO);
-	return new ResponseEntity<CustomerAddress>(customerAddress ,HttpStatus.OK);
+	public ResponseEntity<CustomerAddress> saveAddress(@RequestBody PermanentAddressDTO permanentAddressDTO) {
+		CustomerAddress customerAddress = customerResource.saveAddress(permanentAddressDTO);
+		return new ResponseEntity<CustomerAddress>(customerAddress, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = "/save-localaddress")
-	public ResponseEntity<CustomerAddress> saveLocalAddress(@RequestBody LocalAddressDTO localAddressDTO)
-	{
-	CustomerAddress localCustomerAddress = customerResource.saveLocalAddress(localAddressDTO);
-	return new ResponseEntity<CustomerAddress>(localCustomerAddress,HttpStatus.OK);
+	public ResponseEntity<CustomerAddress> saveLocalAddress(@RequestBody LocalAddressDTO localAddressDTO) {
+		CustomerAddress localCustomerAddress = customerResource.saveLocalAddress(localAddressDTO);
+		return new ResponseEntity<CustomerAddress>(localCustomerAddress, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = "/customerAddress")
-	public ResponseEntity<Customer> saveCustomerAddress(@RequestBody CustomerAddressDTO customerAddressDTO)
-	{
-	Customer savecustomerAddress =	customerResource.saveCustomerAddress(customerAddressDTO);
-	return new ResponseEntity<Customer>(savecustomerAddress,HttpStatus.OK);
+	public ResponseEntity<Customer> saveCustomerAddress(@RequestBody CustomerAddressDTO customerAddressDTO) {
+		Customer savecustomerAddress = customerResource.saveCustomerAddress(customerAddressDTO);
+		return new ResponseEntity<Customer>(savecustomerAddress, HttpStatus.OK);
 	}
+
 }

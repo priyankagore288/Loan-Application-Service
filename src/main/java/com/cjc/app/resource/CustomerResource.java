@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cjc.app.Entity.AllpersonalDocument;
-
 import com.cjc.app.Entity.Customer;
 import com.cjc.app.Entity.CustomerAddress;
 import com.cjc.app.Entity.LocalAddress;
@@ -32,6 +31,7 @@ public class CustomerResource {
 	private LoanService loanService;
 	@Autowired
 	private ModelMapper modelMapper;
+
 	@Autowired
 	private SanctionDetailsService sanctionDetailsService;
 	@Autowired
@@ -41,15 +41,14 @@ public class CustomerResource {
 	private CustomerAddressService customerAddressService;
 	@Autowired
 	private PermanentAddressService permanentAddressService;
-	
+
 	@Autowired
 	private LocalAddressService localAddressService;
 
 	public CustomerResponseDTO saveCustomer(CustomerRequestDTO customerRequestDTO) {
 
 		Customer customer = modelMapper.map(customerRequestDTO, Customer.class);
-		
-     
+
 		Customer saveCustomer = loanService.saveCustomer(customer);
 
 		if (saveCustomer != null) {
@@ -96,27 +95,24 @@ public class CustomerResource {
 			customerAddress.setPermanentAddress(savedpermanentAddress);
 			customerAddressService.addCustomerAddress(customerAddress);
 
-				return customerAddress;
-			
+			return customerAddress;
 
 		}
 		return null;
 	}
 
 	public CustomerAddress saveLocalAddress(LocalAddressDTO localAddressDTO) {
-	LocalAddress localAddress = modelMapper.map(localAddressDTO, LocalAddress.class);
-	LocalAddress savedlocalAddress = localAddressService.saveLocalAddress(localAddress);
-	if(savedlocalAddress != null)
-	{
-		CustomerAddress customerAddress = new CustomerAddress();
-		customerAddress = customerAddressService.getcustomerAddressId(localAddressDTO.getCustomerAddressId());
-		customerAddress.setLocalAddress(savedlocalAddress);
-		customerAddressService.addCustomerAddress(customerAddress);
-      
+		LocalAddress localAddress = modelMapper.map(localAddressDTO, LocalAddress.class);
+		LocalAddress savedlocalAddress = localAddressService.saveLocalAddress(localAddress);
+		if (savedlocalAddress != null) {
+			CustomerAddress customerAddress = new CustomerAddress();
+			customerAddress = customerAddressService.getcustomerAddressId(localAddressDTO.getCustomerAddressId());
+			customerAddress.setLocalAddress(savedlocalAddress);
+			customerAddressService.addCustomerAddress(customerAddress);
+
 			return customerAddress;
-		
-		
-	}
+
+		}
 		return null;
 	}
 
@@ -134,25 +130,19 @@ public class CustomerResource {
 //		return null;
 //	}
 
-	
-
-
 	public Customer saveCustomerAddress(CustomerAddressDTO customerAddressDTO) {
 		CustomerAddress customerAddress = new CustomerAddress();
 		customerAddress = customerAddressService.getcustomerAddressId(customerAddressDTO.getCustomerAddressId());
-		if(customerAddress !=null)
-		{
+		if (customerAddress != null) {
 			Customer existingCustomer = new Customer();
 			existingCustomer = loanService.getCustomerId(customerAddressDTO.getCustomerId());
 			existingCustomer.setCustomeraddress(customerAddress);
 			loanService.saveCustomer(existingCustomer);
 			return existingCustomer;
-			  
+
 		}
-	  
+
 		return null;
 	}
-
-	
 
 }
