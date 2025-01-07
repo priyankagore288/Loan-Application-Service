@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class AllpersonalDoucumenet {
+public class AllpersonalDocument {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

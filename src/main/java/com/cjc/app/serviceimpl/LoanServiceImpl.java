@@ -7,7 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cjc.app.Entity.AllpersonalDocument;
 import com.cjc.app.Entity.Customer;
+import com.cjc.app.Entity.CustomerAddress;
 import com.cjc.app.Entity.SanctionDetails;
 import com.cjc.app.dao.LoanRepository;
 import com.cjc.app.dto.CustomerRequestDTO;
@@ -20,8 +22,7 @@ public class LoanServiceImpl implements LoanService {
 	@Autowired
 	LoanRepository loanrepository;
 
-	@Autowired
-	ModelMapper modelMapper;
+	
 
 	@Override
 	public Customer saveCustomer(Customer customer) {
@@ -71,5 +72,8 @@ public class LoanServiceImpl implements LoanService {
 		return null;
 
 	}
+
+	
+	
 
 }

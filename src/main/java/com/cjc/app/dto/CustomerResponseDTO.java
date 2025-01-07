@@ -15,11 +15,11 @@ public class CustomerResponseDTO {
 	private String customerGender;
 	private String customerEmail;
 	private Double customerMobileNumber;
-	private Double customerAdditionMobile;
-	private Double customerAmountPaidforHome;	
-	private LoanStatus loanStatus;	
-	private CibilScore cibilscore;	
-	private LoanDisbursement loandisbursement;
-    private SanctionDetails sanctionletter;
-
+	private String areaname;
+	private String cityname;
+	private String district;
+	private String state;
+	private String streetName;
+	private Integer houseNumber;
+	
 }

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.cjc.app.dto.AllpersonalDoucumentDTO;
 import com.cjc.app.module.LoanStatus;
 
 import lombok.Data;
@@ -32,7 +33,7 @@ public class Customer {
 	@Enumerated(EnumType.STRING)
 	private LoanStatus loanStatus;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private AllpersonalDoucumenet allpersonaldoucument;
+	private AllpersonalDocument allpersonaldocument;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private FamilydependetInfo  familydependetinfo;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
