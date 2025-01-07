@@ -8,7 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cjc.app.Entity.AllpersonalDocument;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cjc.app.Entity.Customer;
+import com.cjc.app.Entity.AllpersonalDoucument;
 import com.cjc.app.dao.AllpersonalDoucumenetRepository;
 import com.cjc.app.dao.LoanRepository;
 import com.cjc.app.service.LoanService;
@@ -52,6 +57,8 @@ public class LoanServiceImpl implements LoanService {
 	public boolean deleteCustomer(int customerId) {
 		if (loanrepository.existsById(customerId)) {
 
+		if(loanrepository.existsById(customerId))
+		{
 			loanrepository.deleteById(customerId);
 			return true;
 		}
@@ -59,8 +66,7 @@ public class LoanServiceImpl implements LoanService {
 	}
 
 	@Override
-
-	public Customer getCustomerId(Integer customerId) {
+    public Customer getCustomerId(Integer customerId) {
 
 		return loanrepository.findById(customerId).get();
 	}
@@ -80,5 +86,8 @@ public class LoanServiceImpl implements LoanService {
 	public void documentUpload(AllpersonalDocument documents) {
 		documentRepository.save(documents);
 	}
+//	public void documentUpload(AllpersonalDoucumenet documents) {
+//		documentRepository.save(documents);
+//	}
 
 }

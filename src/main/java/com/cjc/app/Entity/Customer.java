@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.cjc.app.dto.AccountDetailsDTO;
 import com.cjc.app.module.LoanStatus;
 
 import lombok.Data;
@@ -45,15 +46,10 @@ public class Customer {
 	private GurantorDetails gurantordetails;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private LoanDisbursement loandisbursement;
-	// @OneToMany(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	// private Ledger ledger;
+	//@OneToMany(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
+	//private Ledger ledger;
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private SanctionDetails sanctiondetails;
-	
 	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
 	private CustomerVerification customerverification;
-
-	@OneToOne(cascade = CascadeType.MERGE.DETACH.REMOVE.REFRESH)
-	private SanctionLetter sanctionletter;
-
 }

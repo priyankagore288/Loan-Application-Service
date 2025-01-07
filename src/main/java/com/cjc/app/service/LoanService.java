@@ -5,6 +5,9 @@ import java.util.List;
 import com.cjc.app.Entity.AllpersonalDocument;
 import com.cjc.app.Entity.Customer;
 
+import com.cjc.app.Entity.Customer;
+import com.cjc.app.Entity.AllpersonalDoucument;
+
 public interface LoanService {
 
 	Customer saveCustomer(Customer customer);
@@ -20,5 +23,11 @@ public interface LoanService {
 	Customer updateSanctionOnId(Integer customerId, Customer customer);
 
 	void documentUpload(AllpersonalDocument documents);
+
+	Customer updateSanctionOnId(Integer customerId, Customer customer);		
+
+	void documentUpload(AllpersonalDoucumenet documents);
+
+	//void documentUpload(AllpersonalDoucumenet documents);
 
 }
