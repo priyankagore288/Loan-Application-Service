@@ -47,8 +47,8 @@ public class LoanServiceImpl implements LoanService {
 
 	@Override
 	public boolean deleteCustomer(int customerId) {
-		if (loanrepository.existsById(customerId)) {
-
+		if(loanrepository.existsById(customerId))
+		{
 			loanrepository.deleteById(customerId);
 			return true;
 		}

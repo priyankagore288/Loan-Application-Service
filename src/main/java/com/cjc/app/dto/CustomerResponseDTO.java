@@ -1,4 +1,5 @@
 package com.cjc.app.dto;
+import com.cjc.app.Entity.AccountDetails;
 import com.cjc.app.Entity.CibilScore;
 import com.cjc.app.Entity.LoanDisbursement;
 import com.cjc.app.module.LoanStatus;
@@ -19,5 +20,5 @@ public class CustomerResponseDTO {
 	private LoanStatus loanStatus;	
 	private CibilScore cibilscore;	
 	private LoanDisbursement loandisbursement;
-
+	private AccountDetails accountdetails;
 }

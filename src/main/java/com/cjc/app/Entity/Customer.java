@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.cjc.app.dto.AccountDetailsDTO;
 import com.cjc.app.module.LoanStatus;
 
 import lombok.Data;
